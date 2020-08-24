@@ -11,9 +11,43 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const employees = [];
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
+
+// ********* MY NOTES ****************
+// 
+// console.log("Please build your team")          
+// Need to prompt user for manager 1st            
+//     then create new manager with all info and push into array
+// Then prompt for other employees from questions.js
+// If intern, else if engineer, else "I don't want to add any more team members."
+// Will need an array for all employee objects....   
+// Need to validate info, to ensure not used before
+
+// Prompt user for questions
+const promptQuestions = (type) => {
+    return inquirer.prompt(questions[type]);
+}
+
+// Start the employee team generator
+const startGenerator = () => {
+    console.log("Please build your team");
+    promptQuestions("manager").then((employee) => {
+        const newEmployee = new Manager(employee.name, employee.id, employee.email, employee.office); 
+        employees.push(newEmployee);
+        console.log(employees);
+    });
+}
+
+startGenerator();
+
+
+
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
