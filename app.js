@@ -31,20 +31,41 @@ const employees = [];
 // Prompt user for questions
 const promptQuestions = (type) => {
     return inquirer.prompt(questions[type]);
-}
+};
 
 // Start the employee team generator
 const startGenerator = () => {
     console.log("Please build your team");
     promptQuestions("manager").then((employee) => {
-        const newEmployee = new Manager(employee.name, employee.id, employee.email, employee.office); 
+        const newEmployee = new Manager(employee.name, employee.id, employee.email, employee.office);
         employees.push(newEmployee);
-        console.log(employees);
+        // console.log(employees);
+        addNewEmployee();
     });
-}
+};
+
+const addNewEmployee = () => {
+    promptQuestions("question").then((result) => {
+        if (result.question === "Intern") {
+            promptQuestions("intern").then((intern) => {
+                const newIntern = new Intern(intern.name, intern.id, intern.email, intern.school);
+                employees.push(newIntern);
+                addNewEmployee();
+            });
+        } else if (result.question === "Engineer") {
+            promptQuestions("engineer").then((engineer) => {
+                const newEngineer = new Engineer(engineer.name, engineer.id, engineer.email, engineer.github);
+                employees.push(newEngineer);
+                addNewEmployee();
+            });
+        } else {
+            console.log("Employee additions complete!");
+            console.log(employees);
+        }
+    });
+};
 
 startGenerator();
-
 
 
 
