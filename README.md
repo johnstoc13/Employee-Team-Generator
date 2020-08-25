@@ -20,7 +20,7 @@ All tests must pass
 
 ## Deployment
 
-A video of the generated README can be found here: [Chase's README Generator](https://youtu.be/PuYBagscR2U)
+The webstie can be reached here: https://johnstoc13.github.io/Employee-Team-Generator/
 
 ## Resources
 
@@ -35,4 +35,4 @@ Bootstrap CSS - https://getbootstrap.com/
 
 ## License
 
-[![license information](https://img.shields.io/badge/license-MIT-blue)](https://github.com/johnstoc13/README-Generator/blob/master/LICENSE)
+[![license information](https://img.shields.io/badge/license-MIT-blue)](https://github.com/johnstoc13/Employee-Team-Generator/blob/master/LICENSE)
