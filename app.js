@@ -79,9 +79,7 @@ const addNewEmployee = () => {
             console.log("Employee additions complete!");
             // Variable containing the rendered HTML page
             const employeesPage = render(employees);
-            // console.log(employeesPage);     ****CAN REMOVE LATER****
             createOutput(employeesPage);
-
         }
     });
 };
