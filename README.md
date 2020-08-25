@@ -20,7 +20,7 @@ All tests must pass
 
 ## Deployment
 
-The webstie can be reached here: https://johnstoc13.github.io/Employee-Team-Generator/
+A video of the generated README can be found here: [My Awesome Team Generator](https://youtu.be/PuYBagscR2U)
 
 ## Resources
 
