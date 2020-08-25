@@ -10,23 +10,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-
 const employees = [];
-
-
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
-
-// ********* MY NOTES ****************
-// 
-// console.log("Please build your team")          DONE
-// Need to prompt user for manager 1st            
-//     then create new manager with all info and push into array    DONE
-// Then prompt for other employees from questions.js                 DONE
-// If intern, else if engineer, else "I don't want to add any more team members."     DONE
-// Will need an array for all employee objects....   DONE
-// Need to validate info, to ensure not used before   DONE
 
 // Prompt user for questions
 const promptQuestions = (type) => {
@@ -35,35 +19,47 @@ const promptQuestions = (type) => {
 
 // Start the employee team generator
 const startGenerator = () => {
+    // Initial display message
     console.log("Please build your team");
+    // Prompt manager questions
     promptQuestions("manager").then((employee) => {
+        // First verify all entries were completed
         if (!employee.name || ! employee.id || !employee.email || !employee.office) {
             console.log("You must enter all of your Manager's information!");
         } else {
+            // Create new variable for manager and info
             const newEmployee = new Manager(employee.name, employee.id, employee.email, employee.office);
+            // Add manager into employees array
             employees.push(newEmployee);
-            // console.log(employees[0].name);
+            // Call for new employee function
             addNewEmployee();
         }
     });
 };
 
 const addNewEmployee = () => {
+    // Prompt for question containing employee choices
     promptQuestions("question").then((result) => {
         if (result.question === "Intern") {
+            // Prompt for intern specific questions
             promptQuestions("intern").then((intern) => {
+                // Validate all entries completed
                 if (!intern.name || !intern.id || !intern.email || !intern.school) {
                     console.log("You must enter all of your Intern's information!");
+                    // Verify id isn't same as manager
                 } else if (intern.id == employees[0].id) {
                     console.log("Intern cannot have the same ID as the Manager!");
+                    // Verify email isn't same as manager
                 } else if (intern.email == employees[0].email) {
                     console.log("Intern cannot have the same email as the Manager!");
                 } else {
+                    // Same process here as for manager
                     const newIntern = new Intern(intern.name, intern.id, intern.email, intern.school);
                     employees.push(newIntern);
                     addNewEmployee();
                 }
             });
+            // Same process for engineer as intern
         } else if (result.question === "Engineer") {
             promptQuestions("engineer").then((engineer) => {
                 if (!engineer.name || !engineer.id || !engineer.email || !engineer.school) {
@@ -79,8 +75,13 @@ const addNewEmployee = () => {
                 }
             });
         } else {
+            // Message to end inputs
             console.log("Employee additions complete!");
-            // console.log(employees[0].name);
+            // Variable containing the rendered HTML page
+            const employeesPage = render(employees);
+            // console.log(employeesPage);     ****CAN REMOVE LATER****
+            createOutput();
+
         }
     });
 };
@@ -89,14 +90,28 @@ startGenerator();
 
 
 
+// Credit:  https://www.geeksforgeeks.org/node-js-fs-existssync-method/
+// Credit:  https://www.geeksforgeeks.org/node-js-fs-mkdirsync-method/
+let fileExists = fs.existsSync("./output");
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
+const createOutput = () => {
+    if (!fileExists) {
+        console.log("Creating output file.")
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+    fs.writeFileSync(outputPath);
+}
 
-// render(employees); {
-//     console.log(render(employees));
-// };
+// ***********          NEW NOTES        ********************
+// Need a function to check whether file exists, and if not, create one
+// Needs to happen after 
+// Need to create both output and team.html files this way
+
+// REFERENCE FROM ABOVE to folder and
+// const OUTPUT_DIR = path.resolve(__dirname, "output");
+// const outputPath = path.join(OUTPUT_DIR, "team.html");
+
+
 
 
 // After you have your html, you're now ready to create an HTML file using the HTML
