@@ -31,6 +31,8 @@ Bootstrap CSS - https://getbootstrap.com/
 
 ## Images
 
+<img width="1397" alt="Screen Shot 2020-08-25 at 1 21 35 AM" src="https://user-images.githubusercontent.com/66090689/91126741-b5dc5f00-e672-11ea-9da4-ed54150d8a57.png">
+
 ## License
 
 [![license information](https://img.shields.io/badge/license-MIT-blue)](https://github.com/johnstoc13/README-Generator/blob/master/LICENSE)
