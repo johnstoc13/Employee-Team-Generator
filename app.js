@@ -95,7 +95,7 @@ let fileExists = fs.existsSync("./output");
 const createOutput = (html) => {
     if (!fileExists) {
         console.log("Creating output file.")
-        fs.mkdirSync(OUTPUT_DIR);
+        fs.mkdirAsync(OUTPUT_DIR);
     }
     fs.writeFileSync(outputPath, html);
 };
