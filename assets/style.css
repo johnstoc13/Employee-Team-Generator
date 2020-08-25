@@ -12,8 +12,8 @@
     height: 48px;
 }
 
-span .blue:hover {
-    color: #ffc107!important;
+span .text-warning:hover {
+    color: #007bff!important;
 }
 
 .yellow {
