@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+.footer-font {
+    font-size: 13px;
+}
+
+.footer-margin {
+    height: 48px;
+}
+
+span .blue:hover {
+    color: #ffc107!important;
+}
+
+.yellow {
+    color: #ffc107
+}
