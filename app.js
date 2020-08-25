@@ -62,7 +62,7 @@ const addNewEmployee = () => {
             // Same process for engineer as intern
         } else if (result.question === "Engineer") {
             promptQuestions("engineer").then((engineer) => {
-                if (!engineer.name || !engineer.id || !engineer.email || !engineer.school) {
+                if (!engineer.name || !engineer.id || !engineer.email || !engineer.github) {
                     console.log("You must enter all of your Engineer's information!");
                 } else if (engineer.id == employees[0].id) {
                     console.log("Engineer cannot have the same ID as the Manager!");
@@ -80,7 +80,7 @@ const addNewEmployee = () => {
             // Variable containing the rendered HTML page
             const employeesPage = render(employees);
             // console.log(employeesPage);     ****CAN REMOVE LATER****
-            createOutput();
+            createOutput(employeesPage);
 
         }
     });
@@ -89,43 +89,15 @@ const addNewEmployee = () => {
 startGenerator();
 
 
-
 // Credit:  https://www.geeksforgeeks.org/node-js-fs-existssync-method/
 // Credit:  https://www.geeksforgeeks.org/node-js-fs-mkdirsync-method/
 let fileExists = fs.existsSync("./output");
 
-const createOutput = () => {
+// Function to create Output folder and HTML file if nonexistent
+const createOutput = (html) => {
     if (!fileExists) {
         console.log("Creating output file.")
         fs.mkdirSync(OUTPUT_DIR);
     }
-    fs.writeFileSync(outputPath);
-}
-
-// ***********          NEW NOTES        ********************
-// Need a function to check whether file exists, and if not, create one
-// Needs to happen after 
-// Need to create both output and team.html files this way
-
-// REFERENCE FROM ABOVE to folder and
-// const OUTPUT_DIR = path.resolve(__dirname, "output");
-// const outputPath = path.join(OUTPUT_DIR, "team.html");
-
-
-
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
+    fs.writeFileSync(outputPath, html);
+};
