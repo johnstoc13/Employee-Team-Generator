@@ -20,7 +20,7 @@ All tests must pass
 
 ## Deployment
 
-A video of the generated HTML page can be found here: [My Awesome Team Generator](https://johnstoc13.github.io/Employee-Team-Generator/output/team.html)
+The generated HTML can be viewed here: [My Awesome Team Generator](https://johnstoc13.github.io/Employee-Team-Generator/output/team.html)
 
 ## Resources
 
