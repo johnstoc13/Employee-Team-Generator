@@ -22,18 +22,17 @@ const startGenerator = () => {
     // Initial display message
     console.log("Please build your team");
     // Prompt manager questions
-    promptQuestions("manager").then((employee) => {
-        // First verify all entries were completed
-        if (!employee.name || ! employee.id || !employee.email || !employee.office) {
-            console.log("You must enter all of your Manager's information!");
-        } else {
-            // Create new variable for manager and info
-            const newEmployee = new Manager(employee.name, employee.id, employee.email, employee.office);
-            // Add manager into employees array
-            employees.push(newEmployee);
-            // Call for new employee function
-            addNewEmployee();
-        }
+    promptQuestions("manager").then((manager) => {
+        // Create new variable for manager and info
+        const newManager = new Manager(manager.name, manager.id, manager.email, manager.office);
+        // Add manager into employees array
+        employees.push(newManager);
+        // Push other entries into appropriate arrays for validation
+        questions.ids.push(manager.id);
+        questions.emails.push(manager.email);
+        questions.offices.push(manager.office);
+        // Call for new employee function
+        addNewEmployee();
     });
 };
 
@@ -43,36 +42,22 @@ const addNewEmployee = () => {
         if (result.question === "Intern") {
             // Prompt for intern specific questions
             promptQuestions("intern").then((intern) => {
-                // Validate all entries completed
-                if (!intern.name || !intern.id || !intern.email || !intern.school) {
-                    console.log("You must enter all of your Intern's information!");
-                    // Verify id isn't same as manager
-                } else if (intern.id == employees[0].id) {
-                    console.log("Intern cannot have the same ID as the Manager!");
-                    // Verify email isn't same as manager
-                } else if (intern.email == employees[0].email) {
-                    console.log("Intern cannot have the same email as the Manager!");
-                } else {
-                    // Same process here as for manager
-                    const newIntern = new Intern(intern.name, intern.id, intern.email, intern.school);
-                    employees.push(newIntern);
-                    addNewEmployee();
-                }
+                // Same process here as for manager
+                const newIntern = new Intern(intern.name, intern.id, intern.email, intern.school);
+                employees.push(newIntern);
+                questions.ids.push(intern.id);
+                questions.emails.push(intern.email);
+                addNewEmployee();
             });
-            // Same process for engineer as intern
         } else if (result.question === "Engineer") {
             promptQuestions("engineer").then((engineer) => {
-                if (!engineer.name || !engineer.id || !engineer.email || !engineer.github) {
-                    console.log("You must enter all of your Engineer's information!");
-                } else if (engineer.id == employees[0].id) {
-                    console.log("Engineer cannot have the same ID as the Manager!");
-                } else if (engineer.email == employees[0].email) {
-                    console.log("Engineer cannot have the same email as the Manager!");
-                } else {
+                // Same process here for engineer as intern
                 const newEngineer = new Engineer(engineer.name, engineer.id, engineer.email, engineer.github);
                 employees.push(newEngineer);
+                questions.ids.push(engineer.id);
+                questions.emails.push(engineer.email);
+                questions.githubs.push(engineer.github);
                 addNewEmployee();
-                }
             });
         } else {
             // Message to end inputs
@@ -86,16 +71,44 @@ const addNewEmployee = () => {
 
 startGenerator();
 
-
 // Credit:  https://www.geeksforgeeks.org/node-js-fs-existssync-method/
 // Credit:  https://www.geeksforgeeks.org/node-js-fs-mkdirsync-method/
-let fileExists = fs.existsSync("./output");
+// let fileExists = fs.existsSync("./output");
 
 // Function to create Output folder and HTML file if nonexistent
+// const createOutput = (html) => {
+//     if (!fileExists) {
+//         console.log("Creating output file.")
+//         fs.mkdirSync(OUTPUT_DIR);
+//     }
+//     fs.writeFileSync(outputPath, html);
+// };
+
+
+// Refactored function to run asynchronously
+// Credit:  Worked with tutor here!
 const createOutput = (html) => {
-    if (!fileExists) {
-        console.log("Creating output file.")
-        fs.mkdirAsync(OUTPUT_DIR);
-    }
-    fs.writeFileSync(outputPath, html);
-};
+    // Check for output folder
+    fs.exists("./output", (exists) => {
+        if (!exists) {
+            console.log("Creating output folder.");
+            fs.mkdir(OUTPUT_DIR, { recursive: true }, (err) => {
+                if (err) {
+                    return console.log(err);
+                }
+                fs.writeFile(outputPath, html, (err) => {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    return console.log("File created successfully!");
+                })
+            });
+        }
+        fs.writeFile(outputPath, html, (err) => {
+            if (err) {
+                return console.log(err);
+            }
+            return console.log("File created successfully!");
+        });
+    })
+}
