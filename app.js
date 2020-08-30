@@ -101,7 +101,7 @@ const createOutput = (html) => {
                         return console.log(err);
                     }
                     return console.log("File created successfully!");
-                })
+                });
             });
         }
         fs.writeFile(outputPath, html, (err) => {
@@ -110,5 +110,5 @@ const createOutput = (html) => {
             }
             return console.log("File created successfully!");
         });
-    })
-}
+    });
+};

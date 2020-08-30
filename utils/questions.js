@@ -13,10 +13,10 @@ const validateName = (name) => {
         return "Please fill out all fields";
     }
     else if (!namePattern.test(name)) {
-        return "Name must be letters only"
+        return "Name must be letters only";
     }
     return true;
-}
+};
 
 const validateId = (id) => {
     const idPattern = /^[0-9]{3,10}$/;
@@ -27,13 +27,13 @@ const validateId = (id) => {
 		return "ID already used, please enter a unique ID";
     }
     else if (!idPattern.test(id)) {
-        return "ID must be 3-10 numbers in length"
+        return "ID must be 3-10 numbers in length";
     }
 	return true;
-}
+};
 
 const validateEmail = (email) => {
-    const emailPattern = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i
+    const emailPattern = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i;
     if (!email) {
         return "Please enter an email";
     }
@@ -41,10 +41,10 @@ const validateEmail = (email) => {
 		return "Email already used, please enter a unique Email";
     }
     else if (!emailPattern.test(email)) {
-        return "Please enter a valid email address"
+        return "Please enter a valid email address";
     }
 	return true;
-}
+};
 
 const validateOffice = (office) => {
     const officePattern = /^[0-9]{1,5}$/;
@@ -52,10 +52,10 @@ const validateOffice = (office) => {
         return "Please enter an office number";
     }
     else if (!officePattern.test(office)) {
-        return "Office number must be 1-5 numbers in length"
+        return "Office number must be 1-5 numbers in length";
     }
 	return true;
-}
+};
 
 const validateSchool = (school) => {
     const schoolPattern = /^[a-zA-Z\s]+$/;
@@ -63,10 +63,10 @@ const validateSchool = (school) => {
         return "Please enter a school";
     }
     else if (!schoolPattern.test(school)) {
-        return "School name must be letters only"
+        return "School name must be letters only";
     }
     return true;
-}
+};
 
 const validateGithub = (github) => {
     if (!github) {
@@ -76,7 +76,7 @@ const validateGithub = (github) => {
 		return "GitHub username already used";
     }
     return true;
-}
+};
 
 const manager = [
     {
