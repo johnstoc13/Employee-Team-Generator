@@ -1,4 +1,5 @@
 # Employee-Team-Generator
+[![license information](https://img.shields.io/badge/license-MIT-blue)](https://github.com/johnstoc13/Employee-Team-Generator/blob/master/LICENSE)
 
 ## Description
 
@@ -51,4 +52,4 @@ Bootstrap CSS - https://getbootstrap.com/
 
 ## License
 
-[![license information](https://img.shields.io/badge/license-MIT-blue)](https://github.com/johnstoc13/Employee-Team-Generator/blob/master/LICENSE)
+This project is licensed under the [MIT License](https://github.com/johnstoc13/Employee-Team-Generator/blob/master/LICENSE)
