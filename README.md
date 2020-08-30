@@ -34,6 +34,8 @@ To run the necessary tests:
 
 `npm run test`
 
+<img width="883" alt="Tests" src="https://user-images.githubusercontent.com/66090689/91660462-0d7c2f80-eaa4-11ea-9ad6-577ef727f41f.png">
+
 ## Resources
 
 Node JS - https://nodejs.org/en/
