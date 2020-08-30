@@ -23,6 +23,8 @@ All tests must pass
 
 The generated HTML can be viewed here: [My Awesome Team Generator](https://johnstoc13.github.io/Employee-Team-Generator/output/team.html)
 
+You can also view a video demonstration here: [Video Demo](https://youtu.be/CAHs9fGLbAE)
+
 ## Usage
 
 To use this application, download the code and install the necessary dependencies. Then run:
