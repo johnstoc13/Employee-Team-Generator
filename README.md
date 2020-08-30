@@ -53,3 +53,11 @@ Bootstrap CSS - https://getbootstrap.com/
 ## License
 
 This project is licensed under the [MIT License](https://github.com/johnstoc13/Employee-Team-Generator/blob/master/LICENSE)
+
+## Questions
+
+If you have any questions, please contact me at [chasej@live.com](mailto:chasej@live.com).
+
+Check out my GitHub [profile!](https://github.com/johnstoc13)
+
+©2020 Chase Johnston
