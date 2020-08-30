@@ -22,7 +22,21 @@ All tests must pass
 
 The generated HTML can be viewed here: [My Awesome Team Generator](https://johnstoc13.github.io/Employee-Team-Generator/output/team.html)
 
+## Usage
+
+To use this application, download the code and install the necessary dependencies. Then run:
+
+`node app.js`
+
+## Tests
+
+To run the necessary tests:
+
+`npm run test`
+
 ## Resources
+
+Node JS - https://nodejs.org/en/
 
 Inquirer JS - https://www.npmjs.com/package/inquirer
 
